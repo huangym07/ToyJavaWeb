@@ -34,7 +34,7 @@ public class JdbcBase {
                 }
             }
             // 执行 sql
-            rs = pstm.executeQuery(sql);
+            rs = pstm.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class JdbcBase {
                 }
             }
             // 执行 sql
-            num = pstm.executeUpdate(sql);
+            num = pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
