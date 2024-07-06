@@ -28,10 +28,10 @@ public class TOrderDao {
         return num;
     }
 
-    // 查询用户订单信息
-    public List<TOrder> selectTOrder(String username) throws SQLException {
-        String sql = "select * from torder where username = ?";
-        Object[] obj = {username};
+    // 查询用户订单信息，分页查询
+    public List<TOrder> selectTOrder(String username, Integer currentPage, Integer pageSize) throws SQLException {
+        String sql = "select * from torder where username = ? limit ?, ?";
+        Object[] obj = {username, currentPage, pageSize};
         List<TOrder> list = new ArrayList<>();
         ResultSet rs = JdbcBase.querySql(sql, obj);
         while (rs.next()) {

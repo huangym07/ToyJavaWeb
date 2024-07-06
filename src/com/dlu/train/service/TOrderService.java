@@ -9,8 +9,8 @@ import java.util.List;
 public class TOrderService {
     TOrderDao tOrderDao = new TOrderDao();
     // 查询用户订单信息
-    public List<TOrder> selectTOrder(String username) throws SQLException {
-        return tOrderDao.selectTOrder(username);
+    public List<TOrder> selectTOrder(String username, Integer currentPage, Integer pageSize) throws SQLException {
+        return tOrderDao.selectTOrder(username, currentPage, pageSize);
     }
 
     // 购票
