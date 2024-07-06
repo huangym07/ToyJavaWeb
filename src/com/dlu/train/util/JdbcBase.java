@@ -24,6 +24,7 @@ public class JdbcBase {
     // 执行查询 sql 语句
     public static ResultSet querySql(String sql, Object[] obj) { // obj 用来给占位符赋值
         PreparedStatement pstm = null;
+        rs = null;
         try {
             con = getConnection();
             pstm = con.prepareStatement(sql);
