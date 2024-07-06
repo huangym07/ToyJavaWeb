@@ -15,7 +15,7 @@ import java.io.EOFException;
 import java.io.IOException;
 
 // 用户订单信息查询（分页查询）
-@WebServlet(name = "UserTOrderSelectController")
+@WebServlet("/UserTOrderSelectController")
 public class UserTOrderSelectController extends HttpServlet {
     ResultMap resultMap = new ResultMap<>();
     TrainService trainService = new TrainService();

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "UserSignUpController")
+@WebServlet("/UserSignUpController")
 public class UserSignUpController extends HttpServlet {
     UserService userService = new UserService();
     ResultMap resultMap = new ResultMap<>();
