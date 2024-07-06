@@ -15,7 +15,7 @@ public class JdbcBase {
     // 建立连接
     public static Connection getConnection() {
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/train/?characterEncoding=utf8&serverTimezone=GMT%288", "root", "rootmysql");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/train?characterEncoding=utf8", "root", "rootmysql");
         } catch (SQLException e) {
             e.printStackTrace();
         }

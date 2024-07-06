@@ -7,16 +7,16 @@ public class Train implements Serializable {
     private String trainno;
     private String startpos;
     private String endpos;
-    private Date startdate;
-    private Date enddate;
-    private Long price;
+    private String startdate;
+    private String enddate;
+    private Double price;
     private Integer soldtickets;
     private Integer avalibletickets;
 
     public Train() {
     }
 
-    public Train(String trainno, String startpos, String endpos, Date startdate, Date enddate, Long price, Integer soldtickets, Integer avalibletickets) {
+    public Train(String trainno, String startpos, String endpos, String startdate, String enddate, Double price, Integer soldtickets, Integer avalibletickets) {
         this.trainno = trainno;
         this.startpos = startpos;
         this.endpos = endpos;
@@ -51,27 +51,27 @@ public class Train implements Serializable {
         this.endpos = endpos;
     }
 
-    public Date getStartdate() {
+    public String getStartdate() {
         return startdate;
     }
 
-    public void setStartdate(Date startdate) {
+    public void setStartdate(String startdate) {
         this.startdate = startdate;
     }
 
-    public Date getEnddate() {
+    public String getEnddate() {
         return enddate;
     }
 
-    public void setEnddate(Date enddate) {
+    public void setEnddate(String enddate) {
         this.enddate = enddate;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -97,8 +97,8 @@ public class Train implements Serializable {
                 "trainno='" + trainno + '\'' +
                 ", startpos='" + startpos + '\'' +
                 ", endpos='" + endpos + '\'' +
-                ", startdate=" + startdate +
-                ", enddate=" + enddate +
+                ", startdate='" + startdate + '\'' +
+                ", enddate='" + enddate + '\'' +
                 ", price=" + price +
                 ", soldtickets=" + soldtickets +
                 ", avalibletickets=" + avalibletickets +
