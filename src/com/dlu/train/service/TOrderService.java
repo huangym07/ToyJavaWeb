@@ -8,6 +8,14 @@ import java.util.List;
 
 public class TOrderService {
     TOrderDao tOrderDao = new TOrderDao();
+    // 删除所有 trainno 的订单信息
+    public int delTrainno(String trainno) {
+        int num = tOrderDao.delTrainno(trainno);
+        if (num == 0) {
+            throw new RuntimeException("编号为 " + trainno + " 相关的订单删除失败，请联系管理员");
+        }
+        return num;
+    }
     // 查询用户订单信息
     public List<TOrder> selectTOrder(String username, Integer currentPage, Integer pageSize) throws SQLException {
         return tOrderDao.selectTOrder(username, currentPage, pageSize);

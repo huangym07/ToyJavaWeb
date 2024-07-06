@@ -28,6 +28,15 @@ public class TOrderDao {
         return num;
     }
 
+    // 当删除车次信息时，删除 torder 订单表中所有该车次的订单
+    public int delTrainno(String trainno) {
+        String sql = "delete from torder where trainno = ?";
+        Object[] obj = {trainno};
+        int num = JdbcBase.updateSql(sql, obj);
+        JdbcBase.close();
+        return num;
+    }
+
     // 查询用户订单信息，分页查询
     public List<TOrder> selectTOrder(String username, Integer currentPage, Integer pageSize) throws SQLException {
         String sql = "select * from torder where username = ? limit ?, ?";
