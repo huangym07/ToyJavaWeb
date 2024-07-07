@@ -16,6 +16,7 @@
     <style>
         body {
             background-image: url(image/img1.jpg);
+            background-size: cover;
             background-color: #f0f5ff; /* 主色调蓝色 */
             font-family: Arial, sans-serif;
             margin: 0;
@@ -29,6 +30,9 @@
             width: 300px;
             margin: 0 auto;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 22%;
+            left: 40%;
         }
 
         .form-title {
@@ -91,6 +95,7 @@
     </div>
     <div class="form-item">
         <button @click="login">登录</button>
+        <br><br>
         <button @click="register">注册</button>
     </div>
 </div>
