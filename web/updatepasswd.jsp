@@ -21,6 +21,9 @@
             right: 0;
             bottom: 0;
         }
+        body {
+            font-family: "Fira Code";
+        }
     </style>
 </head>
 <body>

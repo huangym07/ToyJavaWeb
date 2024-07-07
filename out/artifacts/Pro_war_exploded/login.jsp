@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/index.css"/>
     <style>
         body {
+            font-family: "Fira Code";
             background-image: url(image/img1.jpg);
             background-size: cover;
             background-color: #f0f5ff; /* 主色调蓝色 */

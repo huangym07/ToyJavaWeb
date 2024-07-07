@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="css/main.css"/>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        body {
+            font-family: "Fira Code";
+            width: 100%;
+            height: 100%;
         }
         #box {
-            position: center;
             height: 100%;
             width: 100%;
         }
@@ -89,7 +89,7 @@
             trainList: [],
             total: 0,//数据总量
             currentPage: 1,//当前页码
-            pageSize: 5,//一页显示多少条
+            pageSize: 10,//一页显示多少条
             addOrderVis: false, //购票面板
             delOrderVis: false,
             train: {

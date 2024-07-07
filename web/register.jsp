@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/index.css"/>
     <style>
         body {
+            font-family: "Fira Code";
             background-image: url("image/img3.jpg");
             background-size: cover;
             display: flex;

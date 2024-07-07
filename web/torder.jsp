@@ -20,6 +20,7 @@
             padding: 0;
         }
         body {
+            font-family: "Fira Code";
             display: flex;
             justify-content: center; /* 水平居中 */
             align-items: center; /* 垂直居中 */

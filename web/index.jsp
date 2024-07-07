@@ -18,6 +18,7 @@
 
         /*选中所有的标签设置高度为100%*/
         html, body, #box, .el-container, .el-menu {
+            font-family: "Fira Code";
             height: 100%;
         }
 
