@@ -56,6 +56,41 @@
             layout="total, sizes, prev, pager, next, jumper"
             :total="total">
     </el-pagination>
+
+
+    <el-dialog title="新增提示框" :visible.sync="addTrainVis" width="53%">
+        <el-form :model="train" :rules="rules" label-width="100px">
+            <el-form-item label="车次编号" prop="trainno">
+                <el-input v-model="train.trainno" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="始发站" prop="startpos">
+                <el-input v-model="train.startpos" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="终点站" prop="endpos">
+                <el-input v-model="train.endpos" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="发车时间" prop="startdate">
+                <el-input v-model="train.startdate" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="到达时间" prop="enddate">
+                <el-input v-model="train.enddate" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="价格" prop="price">
+                <el-input v-model="train.price" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="初始票数" prop="availabletickets">
+                <el-input v-model="train.availabletickets" width="319px"></el-input>
+            </el-form-item>
+        </el-form>
+
+
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="addTrainVis = false">取 消</el-button>
+    <el-button type="primary" @click="addTrain">确 定</el-button>
+        </span>
+    </el-dialog>
+
+
 </div>
 <script>
     new Vue({
@@ -69,10 +104,119 @@
             addTrainVis: false,
             delTrainVis: false,
             editTrainVis: false,//编辑面板关闭
-            train: {},
+            train: {
+                trainno: "",
+                startpos: "",
+                endpos: "",
+                startdate: "",
+                enddate: "",
+                price: "",
+                soldtickets: "",
+                availabletickets: ""
+            },
             addTrainVis: false,//新增面板
+            rules:
+                {
+                    trainno: [{
+                        required: true, //是否校验
+                        message: '请输入车次编号', //提示信息
+                        trigger: 'blur' //trigger触发器，blur失去焦点
+                    },
+                        {
+                            min: 2,
+                            max: 15,
+                            message: '长度在 2 到 15 个字符',
+                            trigger: 'blur'
+                        }
+                    ],
+                    startpos: [{
+                        required: true,
+                        message: '请输入始发站',
+                        trigger: 'blur'
+                    },
+                        {
+                            min: 2,
+                            max: 15,
+                            message: '长度在 2 到 15 个字符',
+                            trigger: 'blur'
+                        }
+                    ],
+                    endpos: [{
+                        required: true,
+                        message: '请输入终点站',
+                        trigger: 'blur'
+                    },
+                        {
+                            min: 2,
+                            max: 15,
+                            message: '长度在 2 到 15 个字符',
+                            trigger: 'blur'
+                        }
+                    ],
+                    startdate: [{
+                        required: true,
+                        message: '请输入发车时间',
+                        trigger: 'blur'
+                    },
+                        {
+                            min: 2,
+                            max: 30,
+                            message: '请输入合法日期和时间',
+                            trigger: 'blur'
+                        }
+                    ],
+                    startdate: [{
+                        required: true,
+                        message: '请输入到达时间',
+                        trigger: 'blur'
+                    },
+                        {
+                            min: 2,
+                            max: 30,
+                            message: '请输入合法日期和时间',
+                            trigger: 'blur'
+                        }
+                    ],
+                    price: [{
+                        required: true,
+                        message: '请输入价格',
+                        trigger: 'blur'
+                    },
+                        {
+                            min: 2,
+                            max: 10,
+                            message: '请输入合理价格',
+                            trigger: 'blur'
+                        }
+                    ],
+                    soldtickets: [{
+                        required: true,
+                        message: '请输入已卖出车票数目',
+                        trigger: 'blur'
+                    },
+                        {
+                            min: 2,
+                            max: 10,
+                            message: '请输入合理的卖出车票数目',
+                            trigger: 'blur'
+                        }
+                    ],
+                    availabletickets: [{
+                        required: true,
+                        message: '请输入剩余车票数目',
+                        trigger: 'blur'
+                    },
+                        {
+                            min: 2,
+                            max: 10,
+                            message: '请输入合理的剩余车票数目',
+                            trigger: 'blur'
+                        }
+                    ]
+                }
         },
         methods: {
+
             //一页显示多少条
             handleSizeChange: function (val) {
                 this.pageSize = val;
@@ -117,7 +261,33 @@
                         that.$message.error(res.data.message);
                     }
                 })
-            }
+            },
+            add: function() {
+                this.addTrainVis = true;
+            },
+            addTrain:function() {
+                var that = this;
+                var trainno = this.train.trainno;
+                var startpos = this.train.startpos;
+                var endpos = this.train.endpos;
+                var startdate = this.train.startdate;
+                var enddate = this.train.enddate;
+                var price = this.train.price;
+                var availabletickets = this.train.availabletickets;
+                axios.get("AddTrainController?trainno="+ trainno + "&startpos=" + startpos
+                    + "&endpos=" + endpos + "&startdate=" + startdate
+                    + "&enddate=" + enddate + "&price=" + price + "&availabletickets=" + availabletickets
+                ).then(function(res){
+                    if (res.data.status) {
+                        alert("添加成功");
+                        that.addTrainVis = false;
+                        that.selectTrain();
+                    } else {
+                        alert(res.data.message);
+                    }
+                })
+            },
+
         },
         mounted: function () {
             this.selectAllTrain();

@@ -27,7 +27,7 @@ public class TrainDao {
         }
         int num = 0;
         if (resTrain == null) { // 没有的话可以注册
-            sql = "insert into user value(?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into train value(?, ?, ?, ?, ?, ?, ?, ?)";
             Object[] obj2 = {train.getTrainno(), train.getStartpos(), train.getEndpos(), train.getStartdate(), train.getEnddate(), train.getPrice(), 0, train.getAvalibletickets()};
             num = JdbcBase.updateSql(sql, obj2);
         }

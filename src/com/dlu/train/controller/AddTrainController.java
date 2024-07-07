@@ -33,7 +33,9 @@ public class AddTrainController extends HttpServlet {
         String startdate = request.getParameter("startdate");
         String enddate = request.getParameter("enddate");
         Double price = Double.parseDouble(request.getParameter("price"));
-        Integer tickets = Integer.parseInt(request.getParameter("tickets"));
+        Integer tickets = Integer.parseInt(request.getParameter("availabletickets"));
+
+//        System.out.println(new Train(trainno, startpos, endpos, startdate, enddate, price, 0, tickets));
 
         try {
             trainService.addTrain(new Train(trainno, startpos, endpos, startdate, enddate, price, 0, tickets));
