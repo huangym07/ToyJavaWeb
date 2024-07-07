@@ -25,6 +25,7 @@ public class UserUpdatePasswordController extends HttpServlet {
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
         String newPass = request.getParameter("password");
+        System.out.println(username + ", " + newPass);
         try {
             boolean res = userService.updatePassword(username, newPass);
             resultMap.setStatus(true);

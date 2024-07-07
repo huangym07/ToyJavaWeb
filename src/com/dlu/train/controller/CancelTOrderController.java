@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 // 用户退票
@@ -24,8 +25,9 @@ public class CancelTOrderController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 接收参数：username trainno
-        String username = request.getParameter("username");
+        // 接收参数： trainno
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
         String trainno = request.getParameter("trainno");
 
         try {

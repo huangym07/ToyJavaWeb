@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 // 只要访问此地址，就要走过滤器去拦截请求
-@WebFilter("/user.jsp")
+@WebFilter("/usermain.jsp")
 public class UserFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

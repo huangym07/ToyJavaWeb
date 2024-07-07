@@ -36,4 +36,16 @@ public class TrainService {
     public List<Train> selectTrainAll(Integer currentPage, Integer pageSize) throws SQLException {
         return trainDao.selectTrainAll(currentPage, pageSize);
     }
+
+    public int changeTickets(String trainno, int value1, int value2) {
+        int num = trainDao.changeTickets(trainno, value1, value2);
+        if (num == 0) {
+            throw new RuntimeException("修改售出票和余票失败，请联系管理员");
+        }
+        return num;
+    }
+
+    public List<Train> selectTrainAll() throws SQLException {
+        return trainDao.selectTrainAll();
+    }
 }

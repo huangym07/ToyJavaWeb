@@ -8,6 +8,7 @@ public class ResultMap<T> {
     private boolean status; //标志：true 表示前端请求响应成功; false -> 失败
     private String message; // 失败原因
     private List<T> list = new ArrayList<>(); // 查询数据
+    private Integer total;
 
     public boolean isStatus() {
         return status;
@@ -31,5 +32,13 @@ public class ResultMap<T> {
 
     public void setList(List<T> list) {
         this.list = list;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 }

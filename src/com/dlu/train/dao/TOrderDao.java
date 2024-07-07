@@ -1,6 +1,7 @@
 package com.dlu.train.dao;
 
 import com.dlu.train.pojo.TOrder;
+import com.dlu.train.pojo.Train;
 import com.dlu.train.util.JdbcBase;
 
 import java.sql.ResultSet;
@@ -51,17 +52,36 @@ public class TOrderDao {
         return list;
     }
 
+    // 查询全部用户订单信息
+    public List<TOrder> selectTOrderAll(String username) throws SQLException {
+        String sql = "select * from torder where username = ?";
+        Object[] obj = {username};
+        List<TOrder> list = new ArrayList<>();
+        ResultSet rs = JdbcBase.querySql(sql, obj);
+        while (rs.next()) {
+            list.add(new TOrder(rs.getString("username"), rs.getString("trainno"), rs.getInt("tickets")));
+        }
+        JdbcBase.close();
+        return list;
+    }
+
     // 购票
     // 传入 username 和 trainno
     // 查询是否有该订单，如果有，仅把 tickets 字段增加 1 即可
     // 如果没有，新建
     public int buyTOrder(String username, String trainno) {
+
+        int prenum = 0;
+
+
         String sql = "select * from torder where username = ? and trainno = ?";
         Object[] obj = {username, trainno};
         TOrder tOrder = null;
         ResultSet rs = JdbcBase.querySql(sql, obj);
+//        System.out.println("运行到这里 1");
         try {
             if (rs.next()) {
+//                System.out.println("运行到这里 2");
                 tOrder = new TOrder(rs.getString("username"), rs.getString("trainno"), rs.getInt("tickets"));
             }
         } catch (SQLException e) {
@@ -70,11 +90,12 @@ public class TOrderDao {
 
         int num = 0;
 
-        if (tOrder == null) { // 如果有该订单
+        if (tOrder != null) { // 如果有该订单
             String sql2 = "update torder set tickets = ? where username = ? and trainno = ?";
             Object[] obj2 = {tOrder.getTickets() + 1, tOrder.getUsername(), tOrder.getTrainno()};
             num = JdbcBase.updateSql(sql2, obj2);
         } else { // 如果没有该订单
+//            System.out.println("运行到这里 3");
             addTOrder(username, trainno, 1);
         }
         JdbcBase.close();
@@ -103,8 +124,9 @@ public class TOrderDao {
         if (tOrder.getTickets() == 1) { // 仅有一张票
             delTOrder(username, trainno);
         } else {
-            String sql2 = "update train set tickets = ? where username = ? and trainno = ?";
+            String sql2 = "update torder set tickets = ? where username = ? and trainno = ?";
             Object[] obj2 = {tOrder.getTickets() - 1, tOrder.getUsername(), tOrder.getTrainno()};
+            System.out.println("user is " + tOrder.getUsername() + " tickets is " + tOrder.getTickets() + " , trainno is " + tOrder.getTrainno());
             num = JdbcBase.updateSql(sql2, obj2);
         }
 

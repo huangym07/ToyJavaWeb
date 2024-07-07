@@ -59,9 +59,10 @@ public class UserDao {
     // 原密码正确，那么修改成功 返回 true 否则返回 false
     public Boolean updatePassword(String username, String newPass) {
         boolean res = false;
-        String sql = "update user set password = ? where username = ";
-        Object[] obj = {username, newPass};
+        String sql = "update user set password = ? where username = ?";
+        Object[] obj = {newPass, username};
         int num = JdbcBase.updateSql(sql, obj);
+        System.out.println("num is " + num);
         if (num >= 1) res = true;
         else res = false;
         JdbcBase.close();

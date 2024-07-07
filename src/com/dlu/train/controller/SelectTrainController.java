@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 // 查询车次信息（分页查询）
 @WebServlet("/SelectTrainController")
@@ -29,7 +30,9 @@ public class SelectTrainController extends HttpServlet {
         Integer pageSize = Integer.parseInt(request.getParameter("pageSize"));
 
         try {
-            resultMap.setList(trainService.selectTrainAll(currentPage, pageSize));
+            List list = trainService.selectTrainAll(currentPage, pageSize);
+            resultMap.setList(list);
+            resultMap.setTotal(list.size());
             resultMap.setStatus(true);
         } catch (Exception e) {
             resultMap.setStatus(false);
