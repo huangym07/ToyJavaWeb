@@ -17,6 +17,7 @@ public class TOrderService {
         if (num == 0) {
             throw new RuntimeException("编号为 " + trainno + " 相关的订单删除失败，请联系管理员");
         }
+        System.out.println("删除 trainno 订单 num is " + num);
         return num;
     }
     // 分页查询用户订单信息

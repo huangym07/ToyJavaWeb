@@ -39,6 +39,7 @@ public class TrainDao {
     public int delTrain(String trainno) {
         String sql = "delete from train where trainno = ?";
         Object[] obj = {trainno};
+//        System.out.println(trainno);
         int num = JdbcBase.updateSql(sql, obj);
         JdbcBase.close();
         return num;

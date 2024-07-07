@@ -42,6 +42,7 @@ public class TOrderDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("删除订单 trainno is " + trainno);
         String sql = "delete from torder where trainno = ?";
         Object[] obj = {trainno};
         num = JdbcBase.updateSql(sql, obj);

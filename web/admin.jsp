@@ -82,6 +82,10 @@
                 <el-input v-model="train.availabletickets" width="319px"></el-input>
             </el-form-item>
         </el-form>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="addTrainVis = false">取 消</el-button>
+    <el-button type="primary" @click="addTrain">确 定</el-button>
+        </span>
     </el-dialog>
 
     <el-dialog title="编辑提示框" :visible.sync="editTrainVis" width="53%">
