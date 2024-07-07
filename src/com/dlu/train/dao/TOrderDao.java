@@ -98,7 +98,7 @@ public class TOrderDao {
             num = JdbcBase.updateSql(sql2, obj2);
         } else { // 如果没有该订单
 //            System.out.println("运行到这里 3");
-            addTOrder(username, trainno, 1);
+            num = addTOrder(username, trainno, 1);
         }
         JdbcBase.close();
         return num;
@@ -124,7 +124,7 @@ public class TOrderDao {
         int num = 0;
 
         if (tOrder.getTickets() == 1) { // 仅有一张票
-            delTOrder(username, trainno);
+            num = delTOrder(username, trainno);
         } else {
             String sql2 = "update torder set tickets = ? where username = ? and trainno = ?";
             Object[] obj2 = {tOrder.getTickets() - 1, tOrder.getUsername(), tOrder.getTrainno()};
