@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
         }
-        .box {
+        #box {
             position: center;
             height: 100%;
             width: 100%;
