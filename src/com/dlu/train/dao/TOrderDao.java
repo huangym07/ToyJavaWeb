@@ -31,9 +31,20 @@ public class TOrderDao {
 
     // 当删除车次信息时，删除 torder 订单表中所有该车次的订单
     public int delTrainno(String trainno) {
+        String sql2 = "select * from torder where trainno = ?";
+        Object[] obj2 = {trainno};
+        ResultSet res = JdbcBase.querySql(sql2, obj2);
+        int num = 0;
+        try {
+            if (res.getFetchSize() <= 0) {
+                return num = 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         String sql = "delete from torder where trainno = ?";
         Object[] obj = {trainno};
-        int num = JdbcBase.updateSql(sql, obj);
+        num = JdbcBase.updateSql(sql, obj);
         JdbcBase.close();
         return num;
     }

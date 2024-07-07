@@ -82,15 +82,46 @@
                 <el-input v-model="train.availabletickets" width="319px"></el-input>
             </el-form-item>
         </el-form>
+    </el-dialog>
 
+    <el-dialog title="编辑提示框" :visible.sync="editTrainVis" width="53%">
+        <el-form :model="train" :rules="rules" label-width="100px">
+            <el-form-item label="始发站" prop="startpos">
+                <el-input v-model="train.startpos" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="终点站" prop="endpos">
+                <el-input v-model="train.endpos" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="发车时间" prop="startdate">
+                <el-input v-model="train.startdate" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="到达时间" prop="enddate">
+                <el-input v-model="train.enddate" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="价格" prop="price">
+                <el-input v-model="train.price" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="售出票数" prop="soldtickets">
+                <el-input v-model="train.soldtickets" width="319px"></el-input>
+            </el-form-item>
+            <el-form-item label="剩余票数" prop="availabletickets">
+                <el-input v-model="train.availabletickets" width="319px"></el-input>
+            </el-form-item>
+        </el-form>
 
         <span slot="footer" class="dialog-footer">
-    <el-button @click="addTrainVis = false">取 消</el-button>
-    <el-button type="primary" @click="addTrain">确 定</el-button>
+    <el-button @click="editTrainVis = false">取 消</el-button>
+    <el-button type="primary" @click="editTrain">确 定</el-button>
         </span>
     </el-dialog>
 
-
+    <el-dialog title="删除提示框" :visible.sync="delTrainVis" width="53%">
+        <span>请问确定要删除该车次吗?</span>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="delTrainVis = false">取 消</el-button>
+    <el-button type="primary" @click="delTrain">确 定</el-button>
+        </span>
+    </el-dialog>
 </div>
 <script>
     new Vue({
@@ -262,10 +293,17 @@
                     }
                 })
             },
-            add: function() {
+            add: function () {
                 this.addTrainVis = true;
+                this.train.trainno = "";
+                this.train.startpos = "";
+                this.train.endpos = ""
+                this.train.startdate = "";
+                this.train.enddate = "";
+                this.train.price = "";
+                this.train.availabletickets = "";
             },
-            addTrain:function() {
+            addTrain: function () {
                 var that = this;
                 var trainno = this.train.trainno;
                 var startpos = this.train.startpos;
@@ -274,10 +312,10 @@
                 var enddate = this.train.enddate;
                 var price = this.train.price;
                 var availabletickets = this.train.availabletickets;
-                axios.get("AddTrainController?trainno="+ trainno + "&startpos=" + startpos
+                axios.get("AddTrainController?trainno=" + trainno + "&startpos=" + startpos
                     + "&endpos=" + endpos + "&startdate=" + startdate
                     + "&enddate=" + enddate + "&price=" + price + "&availabletickets=" + availabletickets
-                ).then(function(res){
+                ).then(function (res) {
                     if (res.data.status) {
                         alert("添加成功");
                         that.addTrainVis = false;
@@ -287,6 +325,50 @@
                     }
                 })
             },
+            edit: function (train) {
+                this.editTrainVis = true;
+                this.train = train;
+            },
+            editTrain: function () {
+                var that = this;
+                var trainno = this.train.trainno;
+                var startpos = this.train.startpos;
+                var endpos = this.train.endpos;
+                var startdate = this.train.startdate;
+                var enddate = this.train.enddate;
+                var price = this.train.price;
+                var soldtickets = this.train.soldtickets;
+                var availabletickets = this.train.availabletickets;
+                axios.get("UpdateTrainController?trainno=" + trainno + "&startpos=" + startpos
+                    + "&endpos=" + endpos + "&startdate=" + startdate
+                    + "&enddate=" + enddate + "&price=" + price + "&soldtickets=" + soldtickets + "&availabletickets=" + availabletickets
+                ).then(function (res) {
+                    if (res.data.status) {
+                        alert("编辑成功");
+                        that.editTrainVis = false;
+                        that.selectTrain();
+                    } else {
+                        alert(res.data.message);
+                    }
+                })
+            },
+            del: function (train) {
+                this.train = train;
+                this.delTrainVis = true;
+            },
+            delTrain: function () {
+                var that = this;
+                trainno = this.train.trainno;
+                axios.get("DelTrainController?trainno=" + trainno).then(function (res) {
+                    if (res.data.status) {
+                        alert("删除车次成功");
+                        that.delTrainVis = false;
+                        that.selectAllTrain();
+                    } else {
+                        alert(res.data.message);
+                    }
+                })
+            }
 
         },
         mounted: function () {
