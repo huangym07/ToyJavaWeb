@@ -11,13 +11,13 @@ import java.sql.SQLException;
 // 管理员仅支持登录，不支持注册和修改密码等操作
 public class AdminDao {
     public Admin signIn(String username, String password) {
-        String sql = "select * from admin where username = ? and password = ?";
+        String sql = "select * from admin where adminusername = ? and adminpassword = ?";
         Object[] obj = {username, password};
         Admin admin = null;
         ResultSet rs = JdbcBase.querySql(sql, obj);
         try {
             if (rs.next()) {
-                admin = new Admin(rs.getString("username"), rs.getString("password"));
+                admin = new Admin(rs.getString("adminusername"), rs.getString("adminpassword"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

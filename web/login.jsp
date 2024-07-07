@@ -127,7 +127,7 @@
                         console.log(res)
                         if (res.data.status) {
                             that.$message("登录成功");
-                            window.location.href = "/adminmain.jsp";
+                            window.location.href = "/admin.jsp";
                         } else {
                             that.$message.error(res.data.message);
                         }
@@ -147,7 +147,7 @@
                         console.log(res)
                         if (res.data.status) {
                             that.$message("登录成功");
-                            window.location.href = "/usermain.jsp";
+                            window.location.href = "/index.jsp";
                         } else {
                             that.$message.error(res.data.message);
                         }

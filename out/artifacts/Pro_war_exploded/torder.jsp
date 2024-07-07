@@ -19,8 +19,14 @@
             margin: 0;
             padding: 0;
         }
+        body {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            height: 100vh; /* 使父元素占据整个视口高度 */
+            margin: 0; /* 移除 body 的默认外边距 */
+        }
         #box {
-            position: center;
             height: 100%;
             width: 100%;
         }

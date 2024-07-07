@@ -128,7 +128,7 @@ public class TOrderDao {
         } else {
             String sql2 = "update torder set tickets = ? where username = ? and trainno = ?";
             Object[] obj2 = {tOrder.getTickets() - 1, tOrder.getUsername(), tOrder.getTrainno()};
-            System.out.println("user is " + tOrder.getUsername() + " tickets is " + tOrder.getTickets() + " , trainno is " + tOrder.getTrainno());
+//            System.out.println("user is " + tOrder.getUsername() + " tickets is " + tOrder.getTickets() + " , trainno is " + tOrder.getTrainno());
             num = JdbcBase.updateSql(sql2, obj2);
         }
 

@@ -27,7 +27,6 @@ public class AdminSignInController extends HttpServlet {
         // 接收参数：adminusername adminpassword
         String adminusername = request.getParameter("adminusername");
         String adminpassword = request.getParameter("adminpassword");
-
         try {
             Admin admin = adminService.signIn(adminusername, adminpassword);
             resultMap.setStatus(true);

@@ -13,36 +13,37 @@
     <script src="js/index.js"></script>
     <script src="js/axios.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
-    <style type="text/css">
-        #box {
-            width: 400px;
-            height: 400px;
-            margin: 0px auto;
-            /*background-color: aqua;*/
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            position: absolute;
-            top: 22%;
-            left: 35%;
-        }
-        body{
+    <style>
+        body {
             background-image: url("image/img3.jpg");
             background-size: cover;
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            height: 100vh; /* 使父元素占据整个视口高度 */
+            margin: 0; /* 移除 body 的默认外边距 */
         }
-        .el-input {
-            width: 80%;
+        #box {
+            background-color: #ffffff; /* 白色背景 */
+            border-radius: 10px; /* 圆角 */
+            /* 根据需要设置宽度、内边距等 */
+            width: 20%; /* 示例宽度 */
+            padding: 20px; /* 内边距 */
+            /* 如果需要阴影效果 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 如果需要垂直居中也可以添加，但这里主要是为了让表单在div中居中 */
+            flex-direction: column; /* 如果表单项需要垂直堆叠，则保留此属性；否则可以移除 */
+            margin: 20px auto; /* 上下外边距20px，左右自动外边距以实现水平居中（与justify-content: center一起使用时可能不是必需的，但有助于在页面中更好地定位div） */
+            padding: 20px; /* 内边距，为表单内容提供一些空间 */
+            /* 如果需要整个div占据视口的一部分或全部，可以添加以下属性 */
+            /* height: calc(100vh - 40px); /* 示例高度，这里假设顶部和底部有20px的间隙 */
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 可选：添加一些阴影效果 */
         }
         .form-title {
             text-align: center;
             font-size: 24px;
-            color: #1890ff; /* 主色调蓝色 */
-            margin-bottom: 20px;
-        }
-        .form-button {
-            text-align: center;
-            font-size: 15px;
             color: #1890ff; /* 主色调蓝色 */
             margin-bottom: 20px;
         }
@@ -68,11 +69,9 @@
         <el-form-item label="电话号" prop="phonenumber">
             <el-input v-model="user.phonenumber"></el-input>
         </el-form-item>
-        <div class="form-button">
         <el-form-item>
             <el-button @click="register('user')">注册</el-button>
         </el-form-item>
-        </div>
     </el-form>
 </div>
 
