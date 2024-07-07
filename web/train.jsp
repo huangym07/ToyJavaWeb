@@ -14,6 +14,18 @@
     <script src="js/axios.js"></script>
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            position: center;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
@@ -44,7 +56,7 @@
                 @size-change="handleSizeChange"<%--    切换一页多少条触发        --%>
                 @current-change="handleCurrentChange"<%--    切换页码触发        --%>
                 :current-page="currentPage" <%--  当前的页码数  --%>
-                :page-sizes="[5, 10, 15, 20]"<%--一页显示多少条--%>
+                :page-sizes="[10, 15, 20, 225]"<%--一页显示多少条--%>
                 :page-size="pageSize"
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="total">

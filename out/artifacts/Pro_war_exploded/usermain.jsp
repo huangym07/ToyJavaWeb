@@ -76,7 +76,7 @@
 <div id="box">
     <el-container>
         <el-header>
-            <h2 class="logo">大连大学铁路</h2>
+            <h2 class="logo">大连大学铁路售票系统</h2>
             <div class="logout">
                 <span>欢迎${name}  </span>
                 <a href="LogOutController">注销</a>

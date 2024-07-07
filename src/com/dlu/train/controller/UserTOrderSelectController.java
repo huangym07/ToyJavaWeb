@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.List;
@@ -27,12 +28,16 @@ public class UserTOrderSelectController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 接收参数：username, currentPage, pageSize
-        String username = request.getParameter("username");
+        // 接收参数：currentPage, pageSize
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
         Integer currentPage = Integer.parseInt(request.getParameter("currentPage"));
         Integer pageSize = Integer.parseInt(request.getParameter("pageSize"));
+
+//        System.out.println("到达 Controller，" + "username is " + username);
+
         try {
-            List list = tOrderService.selectTOrder(username, currentPage, pageSize);
+            List list = tOrderService.selectTOrder(username, (currentPage - 1) * pageSize, pageSize);
             resultMap.setList(list);
             resultMap.setTotal(list.size());
             resultMap.setStatus(true);

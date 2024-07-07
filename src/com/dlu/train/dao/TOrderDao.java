@@ -48,6 +48,8 @@ public class TOrderDao {
             list.add(new TOrder(rs.getString("username"), rs.getString("trainno"), rs.getInt("tickets")));
         }
 
+//        System.out.println("到达 Dao，list 为 " + list);
+
         JdbcBase.close();
         return list;
     }

@@ -21,6 +21,7 @@ public class TOrderService {
     }
     // 分页查询用户订单信息
     public List<TOrder> selectTOrder(String username, Integer currentPage, Integer pageSize) throws SQLException {
+//        System.out.println("到达 Service");
         return tOrderDao.selectTOrder(username, currentPage, pageSize);
     }
     // 查询全部用户订单信息

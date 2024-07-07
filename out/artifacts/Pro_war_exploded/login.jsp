@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/index.css"/>
     <style>
         body {
-            background-image: url(img/1.jpg);
+            background-image: url(image/img1.jpg);
             background-color: #f0f5ff; /* 主色调蓝色 */
             font-family: Arial, sans-serif;
             margin: 0;
